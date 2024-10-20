@@ -92,6 +92,19 @@ DATABASES = {
     "default": env.db(),
 }
 
+# Cache
+# https://docs.djangoproject.com/fr/2.2/topics/cache/
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": env.str("CACHE_URL"),
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+    }
+}
+CACHE_TIME_MEDIUM = 60 * 60 * 2  # 2 hours
+
 # Authentication
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth
 
