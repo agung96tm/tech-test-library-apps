@@ -1,9 +1,8 @@
+from apps.libraries.factories import AuthorFactory, BookFactory
+from apps.libraries.models import Author, Book
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
-
-from apps.libraries.factories import AuthorFactory, BookFactory
-from apps.libraries.models import Author, Book
 
 
 class TestAuthorListAPIView(APITestCase):
@@ -14,11 +13,14 @@ class TestAuthorListAPIView(APITestCase):
         self.assertEqual(len(response.data["results"]), 5)
 
     def test_success_create_an_author(self):
-        response = self.client.post(reverse("libraries:author-list"), data={
-            "name": "the best",
-            "bio": "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            "birth_date": "1996-08-08",
-        })
+        response = self.client.post(
+            reverse("libraries:author-list"),
+            data={
+                "name": "the best",
+                "bio": "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "birth_date": "1996-08-08",
+            },
+        )
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertIsNotNone(response.data["id"])
@@ -34,9 +36,12 @@ class TestAuthorDetailAPIView(APITestCase):
 
     def test_success_update_author(self):
         author = AuthorFactory()
-        response = self.client.patch(reverse("libraries:author-detail", kwargs={"pk": author.id}), data={
-            "name": "another name",
-        })
+        response = self.client.patch(
+            reverse("libraries:author-detail", kwargs={"pk": author.id}),
+            data={
+                "name": "another name",
+            },
+        )
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["id"], str(author.pk))
@@ -59,13 +64,16 @@ class TestBookListAPIView(APITestCase):
 
     def test_success_create_a_book(self):
         author = AuthorFactory()
-        response = self.client.post(reverse("libraries:book-list"), data={
-            "title": "the best about my president",
-            "author_id": author.id,
-            "publish_date": "1996-08-08",
-            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum "
-                           "has been the industry's standard dummy text ever since the 1500s",
-        })
+        response = self.client.post(
+            reverse("libraries:book-list"),
+            data={
+                "title": "the best about my president",
+                "author_id": author.id,
+                "publish_date": "1996-08-08",
+                "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum "
+                "has been the industry's standard dummy text ever since the 1500s",
+            },
+        )
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertIsNotNone(response.data["id"])
@@ -81,10 +89,13 @@ class TestBookDetailAPIView(APITestCase):
 
     def test_success_update_book(self):
         book = BookFactory()
-        response = self.client.patch(reverse("libraries:book-detail", kwargs={"pk": book.id}), data={
-            "title": "something not right?",
-            "publish_date": "1996-08-08",
-        })
+        response = self.client.patch(
+            reverse("libraries:book-detail", kwargs={"pk": book.id}),
+            data={
+                "title": "something not right?",
+                "publish_date": "1996-08-08",
+            },
+        )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["id"], str(book.pk))
         self.assertEqual(response.data["title"], "something not right?")
