@@ -1,7 +1,6 @@
 Library Apps
 ==========================================
-[![Test & Deploy](https://github.com/BetterToPractice/django-rest-setup/actions/workflows/main.yml/badge.svg)](https://github.com/BetterToPractice/django-rest-setup/actions/workflows/main.yml)
-![Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/agung96tm/de1956fdfa1ea227f6e9cd051467b59a/raw/covbadge_django_rest_setup.json)
+[![Test & Deploy](https://github.com/agung96tm/tech-test-library-apps/actions/workflows/main.yml/badge.svg)](https://github.com/agung96tm/tech-test-library-apps/actions/workflows/main.ymll)
 
 Technical Test for Backend Engineer using the Django framework.
 
