@@ -105,3 +105,19 @@ class TestBookDetailAPIView(APITestCase):
         response = self.client.delete(reverse("libraries:book-detail", kwargs={"pk": book.id}))
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertFalse(Book.objects.filter(id=book.id).exists())
+
+
+class TestAuthorBookListView(APITestCase):
+    def test_success_get_author_books(self):
+        author = AuthorFactory()
+        BookFactory.create_batch(5, author=author)
+        response = self.client.get(
+            reverse(
+                "libraries:author-book-list",
+                kwargs={
+                    "author_pk": str(author.id),
+                },
+            )
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data["results"]), 5)

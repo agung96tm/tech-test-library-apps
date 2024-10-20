@@ -4,7 +4,7 @@ from django.views.decorators.cache import cache_page
 
 
 class CacheViewMixin:
-    cache_timeout = settings.CACHE_TIME_MEDIUM
+    cache_timeout = settings.CACHE_TIME_SHORT
 
     @method_decorator(cache_page(cache_timeout))
     def get(self, request, *args, **kwargs):

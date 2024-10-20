@@ -1,3 +1,4 @@
+import sys
 from datetime import timedelta
 from pathlib import Path
 
@@ -103,7 +104,17 @@ CACHES = {
         },
     }
 }
-CACHE_TIME_MEDIUM = 60 * 60 * 2  # 2 hours
+CACHE_TIME_SHORT = 60 * 3  # 3 minutes
+CACHE_TIME_MEDIUM = 60 * 5  # 5 minutes
+CACHE_TIME_LARGE = 60 * 8  # 8 minutes
+
+if "test" in sys.argv:
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.dummy.DummyCache",  # Dummy cache for tests
+        }
+    }
+
 
 # Authentication
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth
