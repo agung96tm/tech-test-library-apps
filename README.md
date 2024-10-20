@@ -16,6 +16,19 @@ python manage.py migrate
 python manage.py runserver
 ```
 
+#### Run Test
+```commandline
+cd src/project
+
+python manage.py test
+```
+
+#### Run Formatter
+```commandline
+black .
+isort .
+```
+
 #### Run Worker & Scheduler
 ```commandline
 cd src/project
