@@ -14,7 +14,7 @@ admin.site.index_title = "Welcome to Project Admin Dashboard"
 urlpatterns = [
     path("", include("apps.users.urls", namespace="users")),
     path("", include("apps.auths.urls", namespace="auths")),
-    path("", include("apps.blog.urls", namespace="blog")),
+    path("", include("apps.libraries.urls", namespace="libraries")),
     # --------------------------------------------------------------------------------------
     # -- Admin and Auth --
     # --------------------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-from apps.core.mails import BaseMailTemplate
+from core.mails import BaseMailTemplate
 
 
 class RegisterMail(BaseMailTemplate):
