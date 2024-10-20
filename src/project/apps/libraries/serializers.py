@@ -27,12 +27,12 @@ class BookSerializer(serializers.ModelSerializer):
         )
 
     def create(self, validated_data):
-        author = validated_data.pop("author_id")
+        author = validated_data.pop("author_id", None)
         validated_data["author"] = author
         return super().create(validated_data)
 
     def update(self, instance, validated_data):
-        author = validated_data.pop("author_id")
+        author = validated_data.pop("author_id", None)
         if author is not None:
             instance.author = author
         return super().update(instance, validated_data)
